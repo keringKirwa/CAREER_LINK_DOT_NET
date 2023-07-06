@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "dgSpecHash": "2+r4tVdPR22ncu2uHgNRh0cyZVVo2o1V9D+Sq3Cm27nQykTW45G8/C/+HbYVGeoUBXdWifBRJLf6QKerWrWWdQ==",
+  "success": true,
+  "projectFilePath": "/home/kirwakelvin/Desktop/DotNetApps/CareerLinkServer/CareerLinkServer.csproj",
+  "expectedPackageFiles": [
+    "/home/kirwakelvin/.nuget/packages/microsoft.aspnetcore.openapi/7.0.8/microsoft.aspnetcore.openapi.7.0.8.nupkg.sha512",
+    "/home/kirwakelvin/.nuget/packages/microsoft.extensions.apidescription.server/6.0.5/microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
+    "/home/kirwakelvin/.nuget/packages/microsoft.openapi/1.4.3/microsoft.openapi.1.4.3.nupkg.sha512",
+    "/home/kirwakelvin/.nuget/packages/swashbuckle.aspnetcore/6.5.0/swashbuckle.aspnetcore.6.5.0.nupkg.sha512",
+    "/home/kirwakelvin/.nuget/packages/swashbuckle.aspnetcore.swagger/6.5.0/swashbuckle.aspnetcore.swagger.6.5.0.nupkg.sha512",
+    "/home/kirwakelvin/.nuget/packages/swashbuckle.aspnetcore.swaggergen/6.5.0/swashbuckle.aspnetcore.swaggergen.6.5.0.nupkg.sha512",
+    "/home/kirwakelvin/.nuget/packages/swashbuckle.aspnetcore.swaggerui/6.5.0/swashbuckle.aspnetcore.swaggerui.6.5.0.nupkg.sha512"
+  ],
+  "logs": []
+}
