@@ -1,3 +1,4 @@
+using CareerLinkServer.Authentication;
 using CareerLinkServer.DataBaseContext;
 using CareerLinkServer.OptionsSetUp;
 using CareerLinkServer.services;
@@ -21,8 +22,15 @@ builder.Services.AddEntityFrameworkNpgsql().AddDbContext<AppDbContext>(options =
 
 builder.Services.TryAddEnumerable(productServiceDescriptor);
 
+//SERVICE Layer 
+builder.Services.AddSingleton<AuthService>();
+builder.Services.AddSingleton<JwtProvider>();
+
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer();
+
+ // when somebody injects an instance of the IOptions<JwtOptions> class , the framework will  inject it from  the Ioc cntainer.
+ 
 builder.Services.ConfigureOptions<JwtOptionsSetUp>();
 builder.Services.ConfigureOptions<JwtBearerOptionsSetUp>();
 

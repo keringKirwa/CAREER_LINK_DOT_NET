@@ -5,7 +5,7 @@ namespace CareerLinkServer.OptionsSetUp;
 
 public class JwtOptionsSetUp : IConfigureOptions<JwtOptions>
 {
-    private const string SectionName = "JWT";
+    private const string SectionName = "JwtOptionsSettings";
     private readonly IConfiguration _configuration;
 
     public JwtOptionsSetUp(IConfiguration configuration)

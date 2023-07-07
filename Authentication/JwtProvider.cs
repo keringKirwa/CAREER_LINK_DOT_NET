@@ -10,28 +10,34 @@ public class JwtProvider
 {
     private readonly JwtOptions _jwtOptions;
 
-    public JwtProvider(IOptions<JwtOptions> jwtSettings)
+    public JwtProvider(IOptions<JwtOptions> jwtOptions)
     {
-        _jwtOptions = jwtSettings.Value;
+        _jwtOptions = jwtOptions.Value;
     }
 
     public string GenerateToken(string userId, string userEmail)
     {
         var tokenHandler = new JwtSecurityTokenHandler();
-        var key = Encoding.ASCII.GetBytes(_jwtOptions.SecretKey);
-
-        var tokenDescriptor = new SecurityTokenDescriptor
+        var claims = new Claim[]
         {
-            Subject = new ClaimsIdentity(new[]
-            {
-                new Claim(JwtRegisteredClaimNames.Sub, userId),
-                new Claim(JwtRegisteredClaimNames.Email, userEmail)
-            }),
-            Expires = DateTime.UtcNow.AddMinutes(20),
-            SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
-        };
+            new Claim(JwtRegisteredClaimNames.Sub, userId),
+            new Claim(JwtRegisteredClaimNames.Email, userEmail)
 
-        var token = tokenHandler.CreateToken(tokenDescriptor);
+        };
+        
+        var key = Encoding.UTF8.GetBytes(_jwtOptions.SecretKey);
+        var signingCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature);
+        
+
+        var token = new JwtSecurityToken(
+            _jwtOptions.Issuer,
+            _jwtOptions.Audience,
+            claims,
+            null,
+            DateTime.UtcNow.AddHours(1),
+            signingCredentials
+            );
+        
         return tokenHandler.WriteToken(token);
     }
 

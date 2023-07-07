@@ -1,5 +1,5 @@
+using CareerLinkServer.DTOs;
 using CareerLinkServer.models.Products;
-using CareerLinkServer.records;
 using CareerLinkServer.services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -24,15 +24,15 @@ public class ProductsController : ControllerBase
 
     [Authorize]
     [HttpPost(Name = "AddProduct")]
-    public  Product AddProduct(RProduct rProduct)
+    public  Product AddProduct(ProductDto productDto)
     {
-        Console.WriteLine(rProduct.ToString());
+        Console.WriteLine(productDto.ToString());
         var category = _productService.CreateAndSaveCategory();
         Console.WriteLine(category);
 
         var product = new Product()
         {
-            CategoryId = rProduct.categoryId,
+            CategoryId = productDto.CategoryId,
             DateCreated = new DateOnly(),
             ProductId = new Guid(),
             ProductCategory = category
@@ -45,13 +45,7 @@ public class ProductsController : ControllerBase
         {
             return _productService.SaveProduct(product);
 
-        }
-
-
-        
-
-
-    }
+        } }
 
     [HttpGet(Name = "GetProducts")]
     public IEnumerable<string> GetProducts()
