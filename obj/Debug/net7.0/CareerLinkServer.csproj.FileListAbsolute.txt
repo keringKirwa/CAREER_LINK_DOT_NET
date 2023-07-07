@@ -31,3 +31,8 @@
 /home/kirwakelvin/Desktop/DotNetApps/CareerLinkServer/obj/Debug/net7.0/CareerLinkServer.pdb
 /home/kirwakelvin/Desktop/DotNetApps/CareerLinkServer/obj/Debug/net7.0/CareerLinkServer.genruntimeconfig.cache
 /home/kirwakelvin/Desktop/DotNetApps/CareerLinkServer/obj/Debug/net7.0/ref/CareerLinkServer.dll
+/home/kirwakelvin/Desktop/DotNetApps/CareerLinkServer/bin/Debug/net7.0/Microsoft.EntityFrameworkCore.dll
+/home/kirwakelvin/Desktop/DotNetApps/CareerLinkServer/bin/Debug/net7.0/Microsoft.EntityFrameworkCore.Abstractions.dll
+/home/kirwakelvin/Desktop/DotNetApps/CareerLinkServer/bin/Debug/net7.0/Microsoft.EntityFrameworkCore.Relational.dll
+/home/kirwakelvin/Desktop/DotNetApps/CareerLinkServer/bin/Debug/net7.0/Npgsql.dll
+/home/kirwakelvin/Desktop/DotNetApps/CareerLinkServer/bin/Debug/net7.0/Npgsql.EntityFrameworkCore.PostgreSQL.dll

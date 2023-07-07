@@ -1,11 +1,30 @@
+using CareerLinkServer.DataBaseContext;
+using CareerLinkServer.OptionsSetUp;
+using CareerLinkServer.services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection.Extensions;
+
 var builder = WebApplication.CreateBuilder(args);
+
+var productServiceDescriptor =
+    new ServiceDescriptor(typeof(IProductService), typeof(ProductService), ServiceLifetime.Singleton);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddEntityFrameworkNpgsql().AddDbContext<AppDbContext>(options => 
+    options.UseNpgsql(builder.Configuration.GetConnectionString("WebApiDatabase")), ServiceLifetime.Singleton);
+
+builder.Services.TryAddEnumerable(productServiceDescriptor);
+
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer();
+builder.Services.ConfigureOptions<JwtOptionsSetUp>();
+builder.Services.ConfigureOptions<JwtBearerOptionsSetUp>();
 
 var app = builder.Build();
 
@@ -17,7 +36,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

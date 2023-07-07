@@ -1,12 +1,15 @@
-namespace CareerLinkServer.products;
+using CareerLinkServer.models.Products;
+
+namespace CareerLinkServer.models.Products;
 
 public class Product
 {
-    public DateOnly Date { get; set; }
-
-    public int TemperatureC { get; set; }
-
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-
-    public string? Summary { get; set; }
+    public Guid ProductId { get; set; }
+    
+    private string ProductName { get; set; }
+    private string Price { get; set; }
+    
+    public DateOnly DateCreated { get; set; }
+    public Category ProductCategory { get; set; }
+    public Guid CategoryId { get; set; }
 }
