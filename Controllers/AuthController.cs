@@ -18,8 +18,13 @@ public class AuthController : ControllerBase
 
     
     [HttpPost("register", Name = "Register")]
-    public User Register(RegisterDto registerDto, CancellationToken cancellationToken)
+    public IActionResult Register(RegisterDto registerDto, CancellationToken cancellationToken)
     {
+        if (cancellationToken.IsCancellationRequested)
+        {
+            return BadRequest("Registration was canceled.");
+        }
+
         var user = new User()
         {
             UserId = new Guid(),
@@ -28,7 +33,7 @@ public class AuthController : ControllerBase
             Name = registerDto.Name
 
         };
-       return  _authService.Register(registerDto);
+       return  Ok(_authService.Register(registerDto));
         
     }
 

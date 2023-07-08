@@ -42,6 +42,11 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+// Database initialization options
+if (app.Environment.IsDevelopment())
+{
+    builder.Services.BuildServiceProvider().GetService<AppDbContext>().Database.EnsureCreated();
+}
 
 app.UseHttpsRedirection();
 app.UseAuthentication();

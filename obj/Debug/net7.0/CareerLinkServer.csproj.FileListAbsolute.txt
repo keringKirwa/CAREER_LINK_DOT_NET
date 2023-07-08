@@ -43,3 +43,8 @@
 /home/kirwakelvin/Desktop/DotNetApps/CareerLinkServer/bin/Debug/net7.0/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 /home/kirwakelvin/Desktop/DotNetApps/CareerLinkServer/bin/Debug/net7.0/Microsoft.IdentityModel.Tokens.dll
 /home/kirwakelvin/Desktop/DotNetApps/CareerLinkServer/bin/Debug/net7.0/System.IdentityModel.Tokens.Jwt.dll
+/home/kirwakelvin/Desktop/DotNetApps/CareerLinkServer/bin/Debug/net7.0/Humanizer.dll
+/home/kirwakelvin/Desktop/DotNetApps/CareerLinkServer/bin/Debug/net7.0/Microsoft.EntityFrameworkCore.Design.dll
+/home/kirwakelvin/Desktop/DotNetApps/CareerLinkServer/bin/Debug/net7.0/Microsoft.Extensions.DependencyModel.dll
+/home/kirwakelvin/Desktop/DotNetApps/CareerLinkServer/bin/Debug/net7.0/Mono.TextTemplating.dll
+/home/kirwakelvin/Desktop/DotNetApps/CareerLinkServer/bin/Debug/net7.0/System.CodeDom.dll
