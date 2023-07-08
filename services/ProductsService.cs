@@ -46,7 +46,7 @@ public class ProductService : IProductService
     public ErrorOr<Deleted> DeleteProduct(Guid productId)
     {
         var product = _dbContext.Products.Find(productId);
-        if (product is null) return DomainErrors.Products.NotFound;
+        // if (product is null) return DomainErrors.Products.NotFound;
         
         _dbContext.Products.Remove(product);
         _dbContext.SaveChanges();

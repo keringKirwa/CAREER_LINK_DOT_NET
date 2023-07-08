@@ -14,7 +14,7 @@ public class AppDbContext : DbContext
     public virtual DbSet<Product> Products { get; set; }
     public virtual DbSet<Category> Categories { get; set; }
     
-    //todo we are using  the constructor below  to pass the parameters to the  base class.
+    //todo we are only using  the constructor below  to pass the parameters to the  base class.
 
     public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
     {
@@ -24,6 +24,10 @@ public class AppDbContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
+        
+        modelBuilder.Entity<Product>()
+            .HasKey(p => p.ProductId);
+
         modelBuilder.Entity<Product>()
             .HasOne(p => p.ProductCategory)
             .WithMany(c => c.Products)

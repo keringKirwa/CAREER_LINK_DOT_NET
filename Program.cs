@@ -1,5 +1,6 @@
 using CareerLinkServer.Authentication;
 using CareerLinkServer.DataBaseContext;
+using CareerLinkServer.Filters;
 using CareerLinkServer.OptionsSetUp;
 using CareerLinkServer.services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -13,7 +14,6 @@ var productServiceDescriptor =
 
 // Add services to the container.
 
-builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -33,10 +33,11 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
  
 builder.Services.ConfigureOptions<JwtOptionsSetUp>();
 builder.Services.ConfigureOptions<JwtBearerOptionsSetUp>();
+builder.Services.AddControllers(options => options.Filters.Add<ErrorHandlingFilterAttribute>());
+
 
 var app = builder.Build();
 {
-    app.UseExceptionHandler("/error");
     app.UseHttpsRedirection();
     app.UseAuthentication();
     app.UseAuthorization();
@@ -52,7 +53,7 @@ if (app.Environment.IsDevelopment())
 // Database initialization options
 if (app.Environment.IsDevelopment())
 {
-    builder.Services.BuildServiceProvider().GetService<AppDbContext>().Database.EnsureCreated();
+    builder.Services.BuildServiceProvider().GetService<AppDbContext>()?.Database.EnsureCreated();
 }
 
 

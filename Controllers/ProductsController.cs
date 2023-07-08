@@ -56,6 +56,17 @@ public class ProductsController : ApiController
         );
 
     }
+    [HttpPost("deleteProduct/{productId:guid}", Name = "DeleteProduct")]
+    public IActionResult DeleteProduct([FromRoute] Guid productId)
+    {
+        var result = _productService.DeleteProduct(productId);
+        
+        return result.Match(
+            onValue:product => Ok(result.Value), 
+            onError:AppProblem
+        );
+
+    }
     
     
 }
