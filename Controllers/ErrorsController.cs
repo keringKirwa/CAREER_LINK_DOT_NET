@@ -2,10 +2,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CareerLinkServer.Controllers;
 
-[ApiController]
-[Route("[controller]")]
 public class ErrorsController : ControllerBase
 {
+    [HttpGet]
     [Route("/error")]
     public IActionResult Error()
     {

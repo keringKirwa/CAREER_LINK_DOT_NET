@@ -11,7 +11,7 @@ public static class DomainErrors
          */
         public static Error NotFound => Error.NotFound(
             code: "Products.NotFound",
-            description: "Category not found"
+            description: "Product with the  provided Id was not found"
             );
 
     }
