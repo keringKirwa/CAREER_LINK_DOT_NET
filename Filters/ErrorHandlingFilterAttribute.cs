@@ -12,7 +12,7 @@ public class ErrorHandlingFilterAttribute : ExceptionFilterAttribute
         
         var problemDetails = new ProblemDetails()
         {
-            Title = "an error occurred while processing  the request ",
+            Title = exception.Message,
             Status = (int)HttpStatusCode.InternalServerError
         };
 

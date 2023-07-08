@@ -8,13 +8,17 @@ namespace CareerLinkServer.services;
 
 public interface IProductService
 {
-    public Product SaveProduct(Product product);
-    public void DeleteProduct(Guid productId);
+     Task<ErrorOr<Created>> SaveProduct(Product product);
+    public ErrorOr<Deleted> DeleteProduct(Guid productId);
     public Category CreateAndSaveCategory();
     public ErrorOr<Product> GetProduct(Guid productId);
     
 
 }
+/*
+ * We are going to use NoContent() statusCode 204 for successful deletion and updating , in the case when we want to update
+ * a product and we realize  that its not found in the database , we create it instead.
+ */
 
 public class ProductService : IProductService
 {
@@ -25,31 +29,35 @@ public class ProductService : IProductService
         _dbContext = appDbContext;
     }
 
-    public Product SaveProduct(Product product)
+    public async Task<ErrorOr<Created>> SaveProduct(Product product)
     {
+        /*
+         * We are not expecting any error here .
+         */
         
         var category = CreateAndSaveCategory();
         product.ProductCategory = category;
         
-        _dbContext.Products.Add(product);
-        _dbContext.SaveChanges();
-        return product;
+        await _dbContext.Products.AddAsync(product);
+        await _dbContext.SaveChangesAsync();
+        return Result.Created;
     }
 
-    public void DeleteProduct(Guid productId)
+    public ErrorOr<Deleted> DeleteProduct(Guid productId)
     {
         var product = _dbContext.Products.Find(productId);
-        if (product != null)
-        { 
-            _dbContext.Products.Remove(product);
-            _dbContext.SaveChanges();
-            
-        }
+        if (product is null) return DomainErrors.Products.NotFound;
+        
+        _dbContext.Products.Remove(product);
+        _dbContext.SaveChanges();
+
+        return Result.Deleted;
     }
 
     public ErrorOr<Product> GetProduct(Guid productId)
     {
         var product = _dbContext.Products.FirstOrDefault(prod => prod.ProductId == productId);
+        
         /*
          * note that the errorOr library has 2 implicit converters .One to convert an Error object into an ErorOr object ,and the other
          * from the instance to  the ErrorOr.
@@ -96,10 +104,10 @@ public class ProductService : IProductService
 
         if (category == null)
         {
-            return new ErrorOr<Category>.Error("Not found");
+            return DomainErrors.Products.NotFound;
         }
 
-        return ErrorOr<Category>.Result(category);
+        return category;
     }
 
 }

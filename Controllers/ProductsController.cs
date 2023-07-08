@@ -7,8 +7,7 @@ namespace CareerLinkServer.Controllers;
 
 /**
  * Note that , the list DataSet<T>  from the  database can be converted to an array using .ToArray() method ,
- * or to a  list using the ToList() method.
- * public WeatherForecastController(ILogger<ProductsController> logger)
+ * or to a  list using the ToList() method. 
  */
 
 public class ProductsController : ApiController
@@ -20,8 +19,9 @@ public class ProductsController : ApiController
     }
     
     [HttpPost(Name = "AddProduct")]
-    public  Product AddProduct(ProductDto productDto)
+    public  async Task<IActionResult> AddProduct(ProductDto productDto)
     {
+        
         Console.WriteLine(productDto.ToString());
 
         var product = new Product()
@@ -33,7 +33,9 @@ public class ProductsController : ApiController
         };
         
         Console.WriteLine(product.ToString());
-        return _productService.SaveProduct(product); }
+        var result = await  _productService.SaveProduct(product);
+        return Ok(result.Value);
+    }
 
     [HttpGet(Name = "GetProducts")]
     public IEnumerable<string> GetProducts()
