@@ -62,7 +62,7 @@ public class ProductsController : ApiController
         var result = _productService.DeleteProduct(productId);
         
         return result.Match(
-            onValue:product => Ok(result.Value), 
+            onValue:product => Ok("Deleted Successfully"), 
             onError:AppProblem
         );
 
