@@ -1,0 +1,2 @@
+sudo -u postgres psql career_link_db opening the career link databse .
+\dt to list the tables that are available there .

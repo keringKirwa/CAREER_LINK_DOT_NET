@@ -35,6 +35,14 @@ builder.Services.ConfigureOptions<JwtOptionsSetUp>();
 builder.Services.ConfigureOptions<JwtBearerOptionsSetUp>();
 
 var app = builder.Build();
+{
+    app.UseExceptionHandler("/error");
+    app.UseHttpsRedirection();
+    app.UseAuthentication();
+    app.UseAuthorization();
+
+    app.MapControllers();
+}
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -48,10 +56,5 @@ if (app.Environment.IsDevelopment())
     builder.Services.BuildServiceProvider().GetService<AppDbContext>().Database.EnsureCreated();
 }
 
-app.UseHttpsRedirection();
-app.UseAuthentication();
-app.UseAuthorization();
-
-app.MapControllers();
 
 app.Run();

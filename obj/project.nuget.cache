@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "xubFNL4JDZzzhFfkFGble8LAVN6H9hI5x4cTZfOG9cn7g/H2Z3/KDzdgfdMIlYdedm6GcZ2a7lh3i51zPxr0yg==",
+  "dgSpecHash": "Wbi1lNU6SOjJyhI/qHIOlyUsFmxzkg5pYXDURGhbynpFpoHLPSGe5yMw2GHDULNy6/S/eSAsl4x6LeaYdHNZ8A==",
   "success": true,
   "projectFilePath": "/home/kirwakelvin/Desktop/DotNetApps/CareerLinkServer/CareerLinkServer.csproj",
   "expectedPackageFiles": [
+    "/home/kirwakelvin/.nuget/packages/erroror/1.2.1/erroror.1.2.1.nupkg.sha512",
     "/home/kirwakelvin/.nuget/packages/humanizer.core/2.14.1/humanizer.core.2.14.1.nupkg.sha512",
     "/home/kirwakelvin/.nuget/packages/microsoft.aspnetcore.authentication.jwtbearer/7.0.8/microsoft.aspnetcore.authentication.jwtbearer.7.0.8.nupkg.sha512",
     "/home/kirwakelvin/.nuget/packages/microsoft.aspnetcore.openapi/7.0.8/microsoft.aspnetcore.openapi.7.0.8.nupkg.sha512",

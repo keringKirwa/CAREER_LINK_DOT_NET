@@ -15,5 +15,12 @@
       <jdbc-url>jdbc:postgresql://localhost:5432/carer_link_db</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
+    <data-source source="LOCAL" name="career_link_db@localhost" uuid="601aa1e1-eb4f-415c-8d04-cffb8598f43f">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://localhost:5432/career_link_db</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
   </component>
 </project>
