@@ -18,18 +18,20 @@ public class ProductsController : ApiController
         _productService = productService;
     }
     
-    [HttpPost(Name = "AddProduct")]
-    public  async Task<IActionResult> AddProduct(ProductDto productDto)
+    [HttpPost("addProduct/", Name = "AddProduct")]
+    public  async Task<IActionResult> AddProduct(ProductDto productDto , Guid cate)
     {
+
+        var r  = _productService.GetCategory(categoryId: productDto.CategoryId);
         
-        Console.WriteLine(productDto.ToString());
+        if (r.IsError) throw new Exception("category not found");
 
         var product = new Product()
         {
             CategoryId = productDto.CategoryId,
-            DateCreated = new DateOnly(),
+            DateCreated = DateOnly.FromDateTime(DateTime.Now),
             ProductId = new Guid(),
-            ProductCategory = null
+            ProductCategory = r.Value
         };
         
         Console.WriteLine(product.ToString());

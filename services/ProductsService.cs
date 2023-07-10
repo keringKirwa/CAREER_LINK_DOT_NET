@@ -8,16 +8,18 @@ namespace CareerLinkServer.services;
 
 public interface IProductService
 {
-     Task<ErrorOr<Created>> SaveProduct(Product product);
+    Task<ErrorOr<Created>> SaveProduct(Product product);
     public ErrorOr<Deleted> DeleteProduct(Guid productId);
     public Category CreateAndSaveCategory();
     public ErrorOr<Product> GetProduct(Guid productId);
+    public ErrorOr<Category> GetCategory(Guid categoryId);
+    
     
 
 }
 /*
- * We are going to use NoContent() statusCode 204 for successful deletion and updating , in the case when we want to update
- * a product and we realize  that its not found in the database , we create it instead.
+ *TODO  We are going to use NoContent() statusCode 204 for successful deletion and updating , in the case when we want to update
+ * TODO a product and we realize  that its not found in the database , we create it instead.
  */
 
 public class ProductService : IProductService
@@ -53,7 +55,6 @@ public class ProductService : IProductService
 
         return Result.Deleted;
     }
-
     public ErrorOr<Product> GetProduct(Guid productId)
     {
         var product = _dbContext.Products.FirstOrDefault(prod => prod.ProductId == productId);
